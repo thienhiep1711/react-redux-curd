@@ -1,63 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component , PropTypes} from 'react';
+import {connect} from 'react-redux';
+import * as courseActions from '../../actions/courseActions';
+import {bindActionCreators} from 'redux';
+import CourseList from './CourseList';
+import { browserHistory } from 'react-router/lib';
 
 class CoursePage extends Component {
+  constructor(props,context) {
+    super(props,context);
+  }
+
+  redirectToAddCoursePage() {
+    browserHistory.push('/course');
+  }
   render() {
+    const {courses} = this.props;
     return (
       <div>
         <div className="row">
-          <div className="col-md-4">
-          <div className="card">
-          <img className="card-img-top" src="http://www.otakuusamagazine.com/wp-content/uploads/2017/12/eromanga.jpg" alt="Card image cap"/>
-          <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">Cras justo odio</li>
-            <li className="list-group-item">Dapibus ac facilisis in</li>
-            <li className="list-group-item">Vestibulum at eros</li>
-          </ul>
-          <div className="card-body">
-            <a href="#" className="card-link">Card link</a>
-            <a href="#" className="card-link">Another link</a>
-          </div>
-            </div>
-          </div>
-          <div className="col-md-4">
-          <div className="card">
-          <img className="card-img-top" src="http://www.otakuusamagazine.com/wp-content/uploads/2017/12/eromanga.jpg" alt="Card image cap"/>
-          <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">Cras justo odio</li>
-            <li className="list-group-item">Dapibus ac facilisis in</li>
-            <li className="list-group-item">Vestibulum at eros</li>
-          </ul>
-          <div className="card-body">
-            <a href="#" className="card-link">Card link</a>
-            <a href="#" className="card-link">Another link</a>
-          </div>
-            </div>
-          </div>
-          <div className="col-md-4">
-          <div className="card">
-          <img className="card-img-top img-responsive" src="http://www.otakuusamagazine.com/wp-content/uploads/2017/12/eromanga.jpg"  alt="Card image cap"/>
-          <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">Cras justo odio</li>
-            <li className="list-group-item">Dapibus ac facilisis in</li>
-            <li className="list-group-item">Vestibulum at eros</li>
-          </ul>
-          <div className="card-body">
-            <a href="#" className="card-link">Card link</a>
-            <a href="#" className="card-link">Another link</a>
-          </div>
-            </div>
+          <div className="col-md-6">
+          <h2>Courses</h2>
+          <input type="submit"
+            value="Add Course"
+            className="btn btn-primary"
+            onClick={this.redirectToAddCoursePage}
+          />
+          <CourseList courses={courses}/>
           </div>
         </div>
       </div>
@@ -65,4 +33,22 @@ class CoursePage extends Component {
   }
 }
 
-export default CoursePage;
+
+CoursePage.propTypes = {
+  courses:PropTypes.array.isRequired,
+  actions:PropTypes.object.isRequired
+};
+
+function mapStateToProps(state, ownProps) {
+  return {
+    courses: state.courses
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions:bindActionCreators(courseActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (CoursePage);
