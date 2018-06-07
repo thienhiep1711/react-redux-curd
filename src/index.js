@@ -8,6 +8,7 @@ import routes from './routes';
 import {loadCourses} from './actions/courseActions';
 import {loadAuthors} from './actions/authorActions';
 import './css/bootstrap.min.css';
+import '../node_modules/toastr/build/toastr.min.css';
 import './css/main.css';
 
 

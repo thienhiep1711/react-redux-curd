@@ -1,7 +1,8 @@
 import React, {PropTypes} from 'react';
 import {Link, IndexLink} from 'react-router';
+import LoadingDots from './LoadingDots';
 
-const Header = () => {
+const Header = ({loading}) => {
   return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" href="#">Pluralsight</a>
@@ -15,11 +16,16 @@ const Header = () => {
             </li>
             <li className="nav-item">
             <Link to="/courses"  activeClassName="active" className="nav-link">Courses</Link>
+            {loading && <LoadingDots interval={100} dots={20}/>}
             </li>
           </ul>
         </div>
       </nav>
   );
+};
+
+Header.PropTypes = {
+  loading: PropTypes.bool.isRequired
 };
 
 export default Header;
