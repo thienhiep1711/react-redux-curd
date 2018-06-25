@@ -17,6 +17,10 @@ export function updateCourseSuccess(course) {
     type: types.UPDATE_COURSES_SUCCESS, course};
 }
 
+export function deleteCourseSuccess(course) {
+  return {
+    type: types.DELETE_COURSES_SUCCESS, course};
+}
 
 export function loadCourses() {
   return function(dispatch) {

@@ -12,7 +12,9 @@ class CoursePage extends Component {
   courseRow(course, index) {
     return <div key={index}>{course.title}</div>;
   }
-
+  removeCourse() {
+    debugger
+  }
   redirectToAddCoursePage() {
     browserHistory.push('/course');
   }
@@ -21,14 +23,14 @@ class CoursePage extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-12">
           <h2>Courses</h2>
           <input type="submit"
             value="Add Course"
-            className="btn btn-primary"
+            className="btn btn-success btn-secondary"
             onClick={this.redirectToAddCoursePage}
           />
-          <CourseList courses={courses}/>
+          <CourseList courses={courses} removeCourse={this.removeCourse}/>
           </div>
         </div>
       </div>

@@ -10,6 +10,12 @@ export default function courseReducer(state = initialState.courses, action) {
       return [
         ...state, Object.assign({}, action.course)
       ];
+    case types.DELETE_COURSES_SUCCESS:
+      return [
+        ...state.items.slice(0, action.payload),
+        ...state.items.slice(action.payload + 1),
+        console.log("Dem")
+      ];
 
     case types.UPDATE_COURSES_SUCCESS:
       return [

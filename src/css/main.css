@@ -11,3 +11,13 @@
 .list-group-flush .list-group-item {
   border-left: 1px solid rgba(0,0,0,.125);
 }
+.table {
+  margin-top: 15px;
+}
+
+.table__control {
+  text-align: right;
+}
+.table__control .btn {
+  margin-left: 10px;
+}
